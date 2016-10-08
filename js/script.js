@@ -58,12 +58,14 @@ function addClick(x, y, dragging)
 	clickDrag.push(dragging);
 }
 
-$("#mapping").change(function() {
-	var map = $("#mapping").value;
+function mapUpdate()
+{
+	var sel = document.getElementById("mapping");
+	var map = sel.options[sel.selectedIndex].value;
 	if(map == "z^2")
 	{
 		f = function(z){
-			z.pow(new Complex("2"))
+			z = z.pow(new Complex("2"))
 			return z;
 		};
 	}
@@ -73,7 +75,8 @@ $("#mapping").change(function() {
 			return z;
 		};
 	}
-});
+	wMap();
+}
 
 // w plane canvas
 var wCanvasDiv = document.getElementById('wPlaneDiv');
@@ -111,6 +114,11 @@ function redraw()
 		zContext.stroke();
 	}
 	// do the mapping
+	wMap();
+}
+
+function wMap()
+{
 	wContext.clearRect(0,0,wCanvas.width,wCanvas.height);
 	var zplane = zContext.getImageData(0,0,zCanvas.width,zCanvas.height);
 	var data = zplane.data;
@@ -134,7 +142,6 @@ function redraw()
 
 		var out_x = Math.round(((out[0] - MIN_X)/(MAX_X - MIN_X))*wCanvas.width)
 		var out_y = Math.round(((out[1] - MIN_Y)/(MAX_Y - MIN_Y))*wCanvas.height)
-		console.log(out_x + " " + out_y);
 
 		wdata.data[0] = red;
 		wdata.data[1] = green;
