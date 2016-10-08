@@ -1,8 +1,8 @@
 var FRAMESIZE = 800;
-var MAX_X = 1;
-var MIN_X = -1;
-var MAX_Y = 1;
-var MIN_Y = -1;
+var MAX_X = 2;
+var MIN_X = -2;
+var MAX_Y = 2;
+var MIN_Y = -2;
 var STROKEWIDTH = 5;
 var AXISWIDTH = 1;
 // z plane canvas
@@ -67,6 +67,34 @@ function mapUpdate()
 	{
 		f = function(z){
 			z = z.pow(new Complex("2"))
+			return z;
+		};
+	}
+	else if(map == "Sqrt(z)")
+	{
+		f = function(z){
+			z = z.sqrt();
+			return z;
+		};
+	}
+	else if(map == "Log(z)")
+	{
+		f = function(z){
+			z = z.log();
+			return z;
+		};
+	}
+	else if(map == "Conj(z)")
+	{
+		f = function(z){
+			z = z.conjugate();
+			return z;
+		};
+	}
+	else if(map == "1/z")
+	{
+		f = function(z){
+			z = Complex.ONE.div(z);
 			return z;
 		};
 	}
