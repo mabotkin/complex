@@ -77,6 +77,20 @@ function mapUpdate()
 			return z;
 		};
 	}
+	else if(map == "Exp(z)")
+	{
+		f = function(z){
+			z = z.exp();
+			return z;
+		};
+	}
+	else if(map == "Exp(iz)")
+	{
+		f = function(z){
+			z = (z.mul(Complex.I)).exp();
+			return z;
+		};
+	}
 	else if(map == "Log(z)")
 	{
 		f = function(z){
@@ -119,6 +133,14 @@ if(typeof G_vmlCanvasManager != 'undefined') {
 	wCanvas = G_vmlCanvasManager.initElement(wCanvas);
 }
 var wContext = wCanvas.getContext("2d");	
+
+function clearCanvas()
+{
+	clickX = [];
+	clickY = [];
+	clickDrag = [];
+	redraw();
+}
 
 function redraw()
 {
@@ -224,4 +246,3 @@ function wMap()
 	}
 }
 redraw();
-wMap();
