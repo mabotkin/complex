@@ -2,6 +2,7 @@
 	<head>
 		<title>Complex Mapping</title>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+		<script type="text/javascript" src="js/complex.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
@@ -10,7 +11,11 @@
 				<div id="zPlaneDiv"></div>	
 				<div id="wPlaneDiv"></div>
 			</div>
+			f(z) = <select id="mapping">
+				<option value="z" selected="selected">z</option>
+				<option value="z^2">z^2</option>
+			</select>
 		</center>
-		<script type="text/javascript" src="script.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
 	</body>
 </html>
