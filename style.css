@@ -1,0 +1,13 @@
+#zPlaneDiv
+{
+	width: 50%;
+	height: 50%;
+	float: left;
+}
+
+#wPlaneDiv
+{
+	width: 50%;
+	height: 50%;
+	float: right;
+}

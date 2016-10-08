@@ -1,17 +1,23 @@
 <html>
 	<head>
 		<title>Complex Mapping</title>
-		<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
-		<div id="zPlaneDiv"></div>	
-		<div id="wPlaneDiv"></div>
+		<center>
+			<div id="wrapper">
+				<div id="zPlaneDiv"></div>	
+				<div id="wPlaneDiv"></div>
+			</div>
+		</center>
 		<script>
+			var FRAMESIZE = 800;
 			// z plane canvas
 			var zCanvasDiv = document.getElementById('zPlaneDiv');
 			var zCanvas = document.createElement('canvas');
-			zCanvas.setAttribute('width', 400);
-			zCanvas.setAttribute('height', 400);
+			zCanvas.setAttribute('width', FRAMESIZE);
+			zCanvas.setAttribute('height', FRAMESIZE);
 			zCanvas.setAttribute('id', 'zCanvas');
 			zCanvas.setAttribute('style','border:1px solid #000000');
 			zCanvasDiv.appendChild(zCanvas);
@@ -83,8 +89,8 @@
 			// w plane canvas
 			var wCanvasDiv = document.getElementById('wPlaneDiv');
 			wCanvas = document.createElement('canvas');
-			wCanvas.setAttribute('width', 400);
-			wCanvas.setAttribute('height', 400);
+			wCanvas.setAttribute('width', FRAMESIZE);
+			wCanvas.setAttribute('height', FRAMESIZE);
 			wCanvas.setAttribute('id', 'canvas');
 			wCanvas.setAttribute('style','border:1px solid #000000');
 			wCanvasDiv.appendChild(wCanvas);
