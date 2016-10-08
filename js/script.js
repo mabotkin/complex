@@ -1,10 +1,20 @@
-var FRAMESIZE = 800;
 var MAX_X = 2;
 var MIN_X = -2;
 var MAX_Y = 2;
 var MIN_Y = -2;
 var STROKEWIDTH = 5;
 var AXISWIDTH = 1;
+//
+var FRAMESIZE = 800;
+if(window.innerWidth <= 1366)
+{
+	FRAMESIZE = 550;
+}
+else if(window.innerWidth <= 1600)
+{
+	FRAMESIZE = 660;
+}
+
 // z plane canvas
 var zCanvasDiv = document.getElementById('zPlaneDiv');
 var zCanvas = document.createElement('canvas');
