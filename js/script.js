@@ -4,6 +4,7 @@ var MIN_X = -1;
 var MAX_Y = 1;
 var MIN_Y = -1;
 var STROKEWIDTH = 5;
+var AXISWIDTH = 1;
 // z plane canvas
 var zCanvasDiv = document.getElementById('zPlaneDiv');
 var zCanvas = document.createElement('canvas');
@@ -94,6 +95,21 @@ var wContext = wCanvas.getContext("2d");
 function redraw()
 {
 	zContext.clearRect(0, 0, zContext.canvas.width, zContext.canvas.height); // Clears the zCanvas
+	zContext.lineWidth = AXISWIDTH;
+	zContext.strokeStyle = "#000000";
+	//axes
+	zContext.beginPath();
+	zContext.moveTo(0,zCanvas.height/2);
+	zContext.lineTo(zCanvas.width,zCanvas.height/2);
+	zContext.closePath();
+	zContext.stroke();
+	// other axis
+	zContext.beginPath();
+	zContext.moveTo(zCanvas.width/2,0);
+	zContext.lineTo(zCanvas.width/2,zCanvas.height);
+	zContext.closePath();
+	zContext.stroke();
+	//
 	zContext.strokeStyle = "#FF0000";
 	zContext.lineJoin = "round";
 	zContext.lineWidth = STROKEWIDTH;
@@ -120,6 +136,21 @@ function redraw()
 function wMap()
 {
 	wContext.clearRect(0,0,wCanvas.width,wCanvas.height);
+	wContext.lineWidth = AXISWIDTH;
+	wContext.strokeStyle = "#000000";
+	//axes
+	wContext.beginPath();
+	wContext.moveTo(0,wCanvas.height/2);
+	wContext.lineTo(wCanvas.width,wCanvas.height/2);
+	wContext.closePath();
+	wContext.stroke();
+	// other axis
+	wContext.beginPath();
+	wContext.moveTo(wCanvas.width/2,0);
+	wContext.lineTo(wCanvas.width/2,wCanvas.height);
+	wContext.closePath();
+	wContext.stroke();
+	//
 	var zplane = zContext.getImageData(0,0,zCanvas.width,zCanvas.height);
 	var data = zplane.data;
 	var prevx = -1;
@@ -127,7 +158,6 @@ function wMap()
 	
 	for(var i = 0; i < clickDrag.length; i++)
 	{
-		var wdata = wContext.createImageData(1,1);
 		var k = clickX[i]*zCanvas.width + clickY[i];
 
 		var red = data[k];
@@ -143,10 +173,6 @@ function wMap()
 		var out_x = Math.round(((out[0] - MIN_X)/(MAX_X - MIN_X))*wCanvas.width)
 		var out_y = Math.round(((out[1] - MIN_Y)/(MAX_Y - MIN_Y))*wCanvas.height)
 
-		wdata.data[0] = red;
-		wdata.data[1] = green;
-		wdata.data[2] = blue;
-		wdata.data[3] = alpha;
 		wContext.fillStyle = "#FF0000";
 		wContext.strokeStyle = "#FF0000";
 		wContext.lineWidth = STROKEWIDTH;
@@ -169,3 +195,5 @@ function wMap()
 		prevy = out_y;
 	}
 }
+redraw();
+wMap();
