@@ -192,6 +192,7 @@ function clearCanvas()
 	clickX = [];
 	clickY = [];
 	clickDrag = [];
+	clickColor = [];
 	redraw();
 }
 
