@@ -14,7 +14,8 @@ else if(window.innerWidth <= 1600)
 {
 	FRAMESIZE = 660;
 }
-
+//
+var STROKECOLOR = "#FF0000";
 // z plane canvas
 var zCanvasDiv = document.getElementById('zPlaneDiv');
 var zCanvas = document.createElement('canvas');
@@ -30,6 +31,7 @@ var zContext = zCanvas.getContext("2d");
 
 var clickX = new Array();
 var clickY = new Array();
+var clickColor = new Array();
 var clickDrag = new Array();
 var paint;
 
@@ -66,7 +68,13 @@ function addClick(x, y, dragging)
 {
 	clickX.push(x);
 	clickY.push(y);
+	clickColor.push(STROKECOLOR);
 	clickDrag.push(dragging);
+}
+
+function updateColor(jscolor)
+{
+	STROKECOLOR = "#" + jscolor;
 }
 
 function mapUpdate()
@@ -205,12 +213,12 @@ function redraw()
 	zContext.closePath();
 	zContext.stroke();
 	//
-	zContext.strokeStyle = "#FF0000";
 	zContext.lineJoin = "round";
 	zContext.lineWidth = STROKEWIDTH;
 			
 	for(var i=0; i < clickX.length; i++) 
 	{
+		zContext.strokeStyle = clickColor[i];
 		zContext.beginPath();
 		if(clickDrag[i] && i)
 		{
@@ -268,11 +276,11 @@ function wMap()
 		var out_x = Math.round(((out[0] - MIN_X)/(MAX_X - MIN_X))*wCanvas.width)
 		var out_y = Math.round((1-((out[1] - MIN_Y)/(MAX_Y - MIN_Y)))*wCanvas.height)
 
-		wContext.fillStyle = "#FF0000";
-		wContext.strokeStyle = "#FF0000";
 		wContext.lineWidth = STROKEWIDTH;
+		wContext.lineJoin = "round";
 		if(i != 0)
 		{
+			wContext.strokeStyle = clickColor[i];
 			wContext.beginPath();
 			if(clickDrag[i])
 			{
