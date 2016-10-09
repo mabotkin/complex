@@ -73,10 +73,31 @@ function mapUpdate()
 {
 	var sel = document.getElementById("mapping");
 	var map = sel.options[sel.selectedIndex].value;
-	if(map == "z^2")
+	if(map == "3z")
+	{
+		f = function(z){
+			z = z.mul(new Complex("3"))
+			return z;
+		};
+	}
+	else if(map == "iz")
+	{
+		f = function(z){
+			z = z.mul(new Complex("i"))
+			return z;
+		};
+	}
+	else if(map == "z^2")
 	{
 		f = function(z){
 			z = z.pow(new Complex("2"))
+			return z;
+		};
+	}
+	else if(map == "z^i")
+	{
+		f = function(z){
+			z = z.pow(new Complex("i"))
 			return z;
 		};
 	}
@@ -112,6 +133,20 @@ function mapUpdate()
 	{
 		f = function(z){
 			z = z.conjugate();
+			return z;
+		};
+	}
+	else if(map == "Sin(z)")
+	{
+		f = function(z){
+			z = z.sin();
+			return z;
+		};
+	}
+	else if(map == "Cos(z)")
+	{
+		f = function(z){
+			z = z.cos();
 			return z;
 		};
 	}
@@ -225,13 +260,13 @@ function wMap()
 		var blue = data[k+2];
 		var alpha = data[k+3];
 
-		var zreal = MIN_X + (MAX_X - MIN_X)*(clickX[i]/zCanvas.width)
-		var zimg = MIN_Y + (MAX_Y - MIN_Y)*(clickY[i]/zCanvas.height)
+		var zreal = MIN_X + (MAX_X - MIN_X)*(clickX[i]/zCanvas.width);
+		var zimg = MIN_Y + (MAX_Y - MIN_Y)*(1-(clickY[i]/zCanvas.height));
 		var inp = new Complex(zreal, zimg);
 		var out = f(inp).toVector();
 
 		var out_x = Math.round(((out[0] - MIN_X)/(MAX_X - MIN_X))*wCanvas.width)
-		var out_y = Math.round(((out[1] - MIN_Y)/(MAX_Y - MIN_Y))*wCanvas.height)
+		var out_y = Math.round((1-((out[1] - MIN_Y)/(MAX_Y - MIN_Y)))*wCanvas.height)
 
 		wContext.fillStyle = "#FF0000";
 		wContext.strokeStyle = "#FF0000";
