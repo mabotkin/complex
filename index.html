@@ -32,6 +32,22 @@
 			<button onclick="clearCanvas()">Clear</button>
 			<br>
 			Color: <input class="jscolor" onchange="updateColor(this.jscolor)" value="FF0000" size=4>
+			<br>
+			<br>
+			Range Settings:
+			<br>
+			Z Plane:<br>
+			Max X:<input type="text" id="ZMAXX" value="2" size=4><br>
+			Min X:<input type="text" id="ZMINX" value="-2" size=4><br>
+			Max Y:<input type="text" id="ZMAXY" value="2" size=4><br>
+			Min Y:<input type="text" id="ZMINY" value="-2" size=4><br>
+			W Plane:<br>
+			Max X:<input type="text" id="WMAXX" value="2" size=4><br>
+			Min X:<input type="text" id="WMINX" value="-2" size=4><br>
+			Max Y:<input type="text" id="WMAXY" value="2" size=4><br>
+			Min Y:<input type="text" id="WMINY" value="-2" size=4><br>
+			<button onclick="updateRange()">Update Range</button><br>
+			<button onclick="resetRange()">Reset Range</button>
 		</center>
 		<script type="text/javascript" src="js/script.js"></script>
 	</body>

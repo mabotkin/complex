@@ -1,7 +1,11 @@
-var MAX_X = 2;
-var MIN_X = -2;
-var MAX_Y = 2;
-var MIN_Y = -2;
+var Z_MAX_X = 2;
+var Z_MIN_X = -2;
+var Z_MAX_Y = 2;
+var Z_MIN_Y = -2;
+var W_MAX_X = 2;
+var W_MIN_X = -2;
+var W_MAX_Y = 2;
+var W_MIN_Y = -2;
 var STROKEWIDTH = 5;
 var AXISWIDTH = 1;
 //
@@ -196,6 +200,111 @@ function clearCanvas()
 	redraw();
 }
 
+function resetRange()
+{
+	document.getElementById("ZMAXX").value = 2;
+	document.getElementById("ZMINX").value = -2;
+	document.getElementById("ZMAXY").value = 2;
+	document.getElementById("ZMINY").value = -2;
+	document.getElementById("WMAXX").value = 2;
+	document.getElementById("WMINX").value = -2;
+	document.getElementById("WMAXY").value = 2;
+	document.getElementById("WMINY").value = -2;
+	Z_MAX_X = 2;
+	Z_MIN_X = -2;
+	Z_MAX_Y = 2;
+	Z_MIN_Y = -2;
+	W_MAX_X = 2;
+	W_MIN_X = -2;
+	W_MAX_Y = 2;
+	W_MIN_Y = -2;
+}
+
+function updateRange()
+{
+	var zmaxx = parseFloat(document.getElementById("ZMAXX").value);
+	var zminx = parseFloat(document.getElementById("ZMINX").value);
+	var zmaxy = parseFloat(document.getElementById("ZMAXY").value);
+	var zminy = parseFloat(document.getElementById("ZMINY").value);
+	var wmaxx = parseFloat(document.getElementById("WMAXX").value);
+	var wminx = parseFloat(document.getElementById("WMINX").value);
+	var wmaxy = parseFloat(document.getElementById("WMAXY").value);
+	var wminy = parseFloat(document.getElementById("WMINY").value);
+	if(!isNaN(zmaxx))
+	{
+		document.getElementById("ZMAXX").value = zmaxx;
+		Z_MAX_X = zmaxx;
+	}
+	else
+	{
+		document.getElementById("ZMAXX").value = 2;
+	}
+	if(!isNaN(zminx))
+	{
+		document.getElementById("ZMINX").value = zminx;
+		Z_MIN_X = zminx;
+	}
+	else
+	{
+		document.getElementById("ZMINX").value = -2;
+	}
+	if(!isNaN(zmaxy))
+	{
+		document.getElementById("ZMAXY").value = zmaxy;
+		Z_MAX_Y = zmaxy;
+	}
+	else
+	{
+		document.getElementById("ZMAXY").value = 2;
+	}
+	if(!isNaN(zminy))
+	{
+		document.getElementById("ZMINY").value = zminy;
+		Z_MIN_Y = zminy;
+	}
+	else
+	{
+		document.getElementById("ZMINY").value = -2;
+	}
+	if(!isNaN(wmaxx))
+	{
+		document.getElementById("WMAXX").value = wmaxx;
+		W_MAX_X = wmaxx;
+	}
+	else
+	{
+		document.getElementById("WMAXX").value = 2;
+	}
+	if(!isNaN(wminx))
+	{
+		document.getElementById("WMINX").value = wminx;
+		W_MIN_X = wminx;
+	}
+	else
+	{
+		document.getElementById("WMINX").value = -2;
+	}
+	if(!isNaN(wmaxy))
+	{
+		document.getElementById("WMAXY").value = wmaxy;
+		W_MAX_Y = wmaxy;
+	}
+	else
+	{
+		document.getElementById("WMAXY").value = 2;
+	}
+	if(!isNaN(wminy))
+	{
+		document.getElementById("WMINY").value = wminy;
+		W_MIN_Y = wminy;
+	}
+	else
+	{
+		document.getElementById("WMINY").value = -2;
+	}
+	redraw();
+}
+
 function redraw()
 {
 	zContext.clearRect(0, 0, zContext.canvas.width, zContext.canvas.height); // Clears the zCanvas
@@ -269,13 +378,13 @@ function wMap()
 		var blue = data[k+2];
 		var alpha = data[k+3];
 
-		var zreal = MIN_X + (MAX_X - MIN_X)*(clickX[i]/zCanvas.width);
-		var zimg = MIN_Y + (MAX_Y - MIN_Y)*(1-(clickY[i]/zCanvas.height));
+		var zreal = Z_MIN_X + (Z_MAX_X - Z_MIN_X)*(clickX[i]/zCanvas.width);
+		var zimg = Z_MIN_Y + (Z_MAX_Y - Z_MIN_Y)*(1-(clickY[i]/zCanvas.height));
 		var inp = new Complex(zreal, zimg);
 		var out = f(inp).toVector();
 
-		var out_x = Math.round(((out[0] - MIN_X)/(MAX_X - MIN_X))*wCanvas.width)
-		var out_y = Math.round((1-((out[1] - MIN_Y)/(MAX_Y - MIN_Y)))*wCanvas.height)
+		var out_x = Math.round(((out[0] - W_MIN_X)/(W_MAX_X - W_MIN_X))*wCanvas.width)
+		var out_y = Math.round((1-((out[1] - W_MIN_Y)/(W_MAX_Y - W_MIN_Y)))*wCanvas.height)
 
 		wContext.lineWidth = STROKEWIDTH;
 		wContext.lineJoin = "round";
