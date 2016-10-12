@@ -26,7 +26,6 @@ var zCanvas = document.createElement('canvas');
 zCanvas.setAttribute('width', FRAMESIZE);
 zCanvas.setAttribute('height', FRAMESIZE);
 zCanvas.setAttribute('id', 'zCanvas');
-zCanvas.setAttribute('style','border:1px solid #000000');
 zCanvasDiv.appendChild(zCanvas);
 if(typeof G_vmlCanvasManager != 'undefined') {
 	zCanvas = G_vmlCanvasManager.initElement(zCanvas);
@@ -184,7 +183,6 @@ wCanvas = document.createElement('canvas');
 wCanvas.setAttribute('width', FRAMESIZE);
 wCanvas.setAttribute('height', FRAMESIZE);
 wCanvas.setAttribute('id', 'wCanvas');
-wCanvas.setAttribute('style','border:1px solid #000000');
 wCanvasDiv.appendChild(wCanvas);
 if(typeof G_vmlCanvasManager != 'undefined') {
 	wCanvas = G_vmlCanvasManager.initElement(wCanvas);

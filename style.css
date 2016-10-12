@@ -5,9 +5,19 @@
 	float: left;
 }
 
+#zCanvas
+{
+	border: 1px solid #000000;
+}
+
 #wPlaneDiv
 {
 	width: 50%;
 	height: 50%;
 	float: right;
+}
+
+#wCanvas
+{
+	border: 1px solid #000000;
 }
