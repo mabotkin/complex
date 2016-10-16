@@ -10,15 +10,7 @@ var STROKEWIDTH = 5;
 var AXISWIDTH = 1;
 var BRANCH_CUT_THRESHHOLD = 10;
 //
-var FRAMESIZE = 800;
-if(window.innerWidth <= 1366)
-{
-	FRAMESIZE = 550;
-}
-else if(window.innerWidth <= 1600)
-{
-	FRAMESIZE = 660;
-}
+var FRAMESIZE = Math.round(Math.min(window.innerHeight*(0.8),window.innerWidth*(0.4)));
 //
 var STROKECOLOR = "#FF0000";
 // z plane canvas
