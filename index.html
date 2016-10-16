@@ -36,7 +36,7 @@
 			<button id="settingsButton">Settings</button>
 			<div id="settings" class="settings">
 				<div class="settings-content">
-					Range Settings:
+					<b>Range Settings:</b>
 					<br>
 					Z Plane:<br>
 					Max X:<input type="text" id="ZMAXX" value="2" size=4><br>
@@ -49,7 +49,11 @@
 					Max Y:<input type="text" id="WMAXY" value="2" size=4><br>
 					Min Y:<input type="text" id="WMINY" value="-2" size=4><br>
 					<button onclick="updateRange()">Update Range</button><br>
-					<button onclick="resetRange()">Reset Range</button>
+					<button onclick="resetRange()">Reset Range</button><br>
+					<b>Branch Cut Settings:</b><br>
+					Branch Cut Threshhold:<input type="text" id="bct" value="10" size=4><br>
+					<button onclick="updateBCT()">Update BCT</button><br>
+					<button onclick="resetBCT()">Reset BCT</button><br>
 				</div>
 			</div>
 		</center>

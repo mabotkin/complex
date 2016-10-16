@@ -196,6 +196,28 @@ function clearCanvas()
 	redraw();
 }
 
+function updateBCT()
+{
+	var newBCT = parseFloat(document.getElementById("bct").value);
+	if(!isNaN(newBCT) && newBCT > 1)
+	{
+		BRANCH_CUT_THRESHHOLD = newBCT;
+		document.getElementById("bct").value = newBCT;
+	}
+	else
+	{
+		document.getElementById("bct").value = 10;
+	}
+	redraw();
+}
+
+function resetBCT()
+{
+	BRANCH_CUT_THRESHHOLD = 10;
+	document.getElementById("bct").value = 10;
+	redraw();
+}
+
 function resetRange()
 {
 	document.getElementById("ZMAXX").value = 2;
@@ -214,6 +236,7 @@ function resetRange()
 	W_MIN_X = -2;
 	W_MAX_Y = 2;
 	W_MIN_Y = -2;
+	redraw();
 }
 
 function updateRange()
