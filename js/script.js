@@ -80,99 +80,23 @@ function updateColor(jscolor)
 
 function mapUpdate()
 {
-	var sel = document.getElementById("mapping");
-	var map = sel.options[sel.selectedIndex].value;
-	if(map == "3z")
+	var map = document.getElementById("mapping").value;
+	try
 	{
+		var funk = Complex.parseFunction(map,['z']);
 		f = function(z){
-			z = z.mul(new Complex("3"))
-			return z;
+			return funk(z);
 		};
+		wMap();
 	}
-	else if(map == "iz")
+	catch (err)
 	{
-		f = function(z){
-			z = z.mul(new Complex("i"))
-			return z;
-		};
-	}
-	else if(map == "z^2")
-	{
-		f = function(z){
-			z = z.pow(new Complex("2"))
-			return z;
-		};
-	}
-	else if(map == "z^i")
-	{
-		f = function(z){
-			z = z.pow(new Complex("i"))
-			return z;
-		};
-	}
-	else if(map == "Sqrt(z)")
-	{
-		f = function(z){
-			z = z.sqrt();
-			return z;
-		};
-	}
-	else if(map == "Exp(z)")
-	{
-		f = function(z){
-			z = z.exp();
-			return z;
-		};
-	}
-	else if(map == "Exp(iz)")
-	{
-		f = function(z){
-			z = (z.mul(Complex.I)).exp();
-			return z;
-		};
-	}
-	else if(map == "Log(z)")
-	{
-		f = function(z){
-			z = z.log();
-			return z;
-		};
-	}
-	else if(map == "Conj(z)")
-	{
-		f = function(z){
-			z = z.conjugate();
-			return z;
-		};
-	}
-	else if(map == "Sin(z)")
-	{
-		f = function(z){
-			z = z.sin();
-			return z;
-		};
-	}
-	else if(map == "Cos(z)")
-	{
-		f = function(z){
-			z = z.cos();
-			return z;
-		};
-	}
-	else if(map == "1/z")
-	{
-		f = function(z){
-			z = Complex.ONE.div(z);
-			return z;
-		};
-	}
-	else // if nothing, use f(z) = z
-	{
+		document.getElementById("mapping").value = "z";
 		f = function(z){
 			return z;
 		};
+		alert("Invalid Function");	
 	}
-	wMap();
 }
 
 // w plane canvas
@@ -399,11 +323,13 @@ function wMap()
 
 		var zreal = Z_MIN_X + (Z_MAX_X - Z_MIN_X)*(clickX[i]/zCanvas.width);
 		var zimg = Z_MIN_Y + (Z_MAX_Y - Z_MIN_Y)*(1-(clickY[i]/zCanvas.height));
-		var inp = new Complex(zreal, zimg);
-		var out = f(inp).toVector();
+		var inp = Complex(zreal, zimg);
+		var out = f(inp);
+		var out_re = out.real();
+		var out_im = out.imag();
 
-		var out_x = Math.round(((out[0] - W_MIN_X)/(W_MAX_X - W_MIN_X))*wCanvas.width)
-		var out_y = Math.round((1-((out[1] - W_MIN_Y)/(W_MAX_Y - W_MIN_Y)))*wCanvas.height)
+		var out_x = Math.round(((out_re - W_MIN_X)/(W_MAX_X - W_MIN_X))*wCanvas.width)
+		var out_y = Math.round((1-((out_im - W_MIN_Y)/(W_MAX_Y - W_MIN_Y)))*wCanvas.height)
 
 		wContext.lineWidth = STROKEWIDTH;
 		wContext.lineJoin = "round";

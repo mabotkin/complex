@@ -2,7 +2,7 @@
 	<head>
 		<title>Complex Mapping</title>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
-		<script src="js/expression.js"></script>
+		<script src="js/complex.min.js"></script>
 		<script src="js/jscolor.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
@@ -13,21 +13,8 @@
 				<div id="zPlaneDiv"><h2>z Plane</h2></div>	
 				<div id="wPlaneDiv"><h2>w Plane</h2></div>
 			</div>
-			f(z) = <select id="mapping" onchange="mapUpdate()">
-				<option value="z" selected="selected">z</option>
-				<option value="3z">3z</option>
-				<option value="iz">iz</option>
-				<option value="z^2">z^2</option>
-				<option value="z^i">z^i</option>
-				<option value="Sqrt(z)">Sqrt(z)</option>
-				<option value="Exp(z)">Exp(z)</option>
-				<option value="Exp(iz)">Exp(iz)</option>
-				<option value="Log(z)">Log(z)</option>
-				<option value="Conj(z)">Conj(z)</option>
-				<option value="Sin(z)">Sin(z)</option>
-				<option value="Cos(z)">Cos(z)</option>
-				<option value="1/z">1/z</option>
-			</select>
+			f(z) = <input type=text id=mapping size=6><br>
+			<button onclick="mapUpdate()">Set Map</button>
 			<br>
 			<button onclick="clearCanvas()">Clear</button>
 			<br>
